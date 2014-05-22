@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    
+    <head>
+        <title>Ranking Window</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <style>
+            a.klik
+            {
+                //styl przycisku
+                display: block;
+                cursor:  pointer;
+                padding: 11px 15px;
+                background: #50b0e2;
+                border: 2px solid #2f7ea7;
+                //styl tekstu
+                color: black;         //kolor po nacisnieciu
+                text-align: center;
+                text-decoration: none;
+                font: bold 1em/11px "Helvetica Neue";
+                //ozdobne style
+                border-radius: 7px;
+                box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.6), 
+                            inset 0 1px 2px rgba(255, 255, 255, 0.7), 
+                            0 5px 0 #50b0e2, 0 6px 0 #2f7ea7, 0 10px 2px #ccc;
+                text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7),
+                             0 -1px 0 rgba(64, 38, 5, 0.9);
+                -webkit-border-radius: 7px;
+                -webkit-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.6),
+                                    inset 0 1px 2px rgba(255, 255, 255, 0.7), 
+                                    0 5px 0 #50b0e2, 0 6px 0 #2f7ea7, 0 10px 2px #ccc;
+                -moz-border-radius: 7px;
+                -webkit-transition: background 0.2s ease-out;
+            }
+            a.klik:active
+            {
+                background: #f6a000;
+                position: relative;
+                top: 5px;
+                border: 1px solid #702d00;
+                -moz-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.6), 
+                                 inset 0 1px 2px rgba(255, 255, 255, 0.7), 
+                                 0 3px 0 #b8882a, 0 4px 0 #593a11, 0 8px 0 #ccc;
+                -webkit-box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.6), 
+                                    inset 0 1px 2px rgba(255, 255, 255, 0.7), 
+                                    0 3px 0 #b8882a, 0 4px 0 #593a11, 0 8px 0 #ccc;
+                box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.6), 
+                            inset 0 1px 2px rgba(255, 255, 255, 0.7), 
+                            0 3px 0 #b8882a, 0 4px 0 #593a11, 0 8px 0 #ccc;
+            }
+        </style>
+    </head>
+    
+    <body>        
+        <table style="table-layout: auto; width: 100%; text-align: center;">
+            <tr style="height: 8em;">
+                <td> <label>Zalogowany : </label> </td>
+                <td> <img src="logo.png" alt="Logo Sudoku"/> </td>
+                <td> <a href="index.html"> Wyloguj </a> </td>
+            </tr>
+            <tr style="height: 6em;">
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <i><b style=" font-size: 6mm;">Lista Najlepszych Graczy</b></i><br/><br/>
+                    <table style="border: 1mm ridge brown; margin-left: auto; margin-right: auto;">
+                        <tr style="height: 3em; background-color: #2f7ea7;">
+                            <td style="width: 4em;">
+                                <b>Pozycja</b>
+                            </td>
+                            <td style="width: 6em;">
+                                <b>Login</b>
+                            </td>
+                            <td style="width: 5em;">
+                                <b>Czas</b>
+                            </td>
+                        </tr>
+                        <tr style="height: 2em; background-color: #f6a000;">
+                            <td>1.</td>
+                            <td>avatar</td>
+                            <td>00:02:48</td>
+                        </tr>
+                        <tr style="height: 2em; background-color: #f6a000;">
+                            <td>2.</td>
+                            <td>rango</td>
+                            <td>00:02:39</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr style="height: 4em;">
+                <td colspan="3"></td>
+            </tr>
+            <tr style="height: 12em;">
+                <td colspan="3"> <a href="mainwindow.html" class="klik">Powrot do Okna Głownego</a> </td>
+            </tr>
+        </table>
+    </body>
+    
+</html>
