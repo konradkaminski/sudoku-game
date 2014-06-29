@@ -188,7 +188,6 @@ class AuthController extends Sudoku_Controller_Action {
         
         $auth = Zend_Auth::getInstance();
         $result = $auth->authenticate(new My_Auth_Adapter_Guest());
-        
         $session = new Zend_Session_Namespace("current_user");
         $user = new Model_User();
         $user->email = "guest";

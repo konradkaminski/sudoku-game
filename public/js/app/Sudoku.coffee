@@ -18,6 +18,7 @@
       @options.btn_reset_id = '#' + @options.btn_reset
       @options.btn_check_id = '#' + @options.btn_check
       @options.timer_id = '#' + @options.timer
+      @options.msg_id = '#' + @options.msg
       @init()
       @reset()
       
@@ -32,23 +33,40 @@
       $(@options.btn_check_id).on "click", () =>
         @check()
 
-    check: () ->
+    check: () =>
       fields = $('input.number')
-      data = []
+      data = "=";
       for field in fields
         row = $(field).data "row"
         col = $(field).data "col"
-        tmp = data[row] || []
-        tmp[col] = $(field).val()
-        data[col] = tmp
+        val = $(field).val()
+        data = data  + "#{row}|#{col}|#{val}="
+
       $.ajax '/game/check',
         type: 'POST'
         dataType: 'json'
-        data: data
-        success: (data, textStatus, jqXHR) ->
-          console.log data
+        data: {data: data}
+        success: (data, textStatus, jqXHR) =>
+          if data.isValid is true
+            @options.runTime = false
+          @showMsg(data.msg)
         
         
+    showMsg: (msg) =>
+      $(@options.msg_id).text ""
+      $(@options.msg_id).show()
+      $(@options.msg_id).text msg
+      msgId = @options.msg_id
+      setTimeout ( ->
+        $(msgId).hide()
+      ), 5000
+      
+
+      
+#      setTimeout(function() {
+#          $('#results').hide();
+#      }, 5000);
+      
     reset: () ->
       @resetTimer()
       @reload()
@@ -56,26 +74,36 @@
       
     resetTimer: () ->
       @options.runTime = false
+      window.clearInterval @options.interval
       @options.interval = false
       $(@options.timer_id).text '--:--:--'
       
     startTimer: () ->
       if @options.runTime is false
+        @options.runSec = 0
         @options.runTime = true
         @options.interval = setInterval(@counter, 1000)
         return
 
     counter: () =>
-      @options.runSec++;
-      min = Math.floor(@options.runSec / 60)
-      hour = Math.floor(@options.runSec / 3600)
-      sec = @options.runSec - (min * 60) - (hour * 3600)
-      
-      if (hour   < 10) {hour   = "0"+hour;}
-      if (min < 10) {min = "0"+min;}
-      if (sec < 10) {sec = "0"+sec;}
-      
-      $(@options.timer_id).text hour + ":" + min + ":" + sec
+      if @options.runTime is true
+        @options.runSec++;
+        min = Math.floor(@options.runSec / 60)
+        hour = Math.floor(@options.runSec / 3600)
+        sec = @options.runSec - (min * 60) - (hour * 3600)
+
+        hourTxt = new String(hour)
+        minTxt = new String(min)
+        secTxt = new String(sec)
+
+        if hourTxt.length < 2
+          hourTxt = "0#{hourTxt}"
+        if minTxt.length < 2 
+          minTxt = "0#{minTxt}"
+        if secTxt.length < 2 
+          secTxt = "0#{secTxt}"
+
+        $(@options.timer_id).text "#{hourTxt}:#{minTxt}:#{secTxt}"
       
     reload: () ->
       $(@options.game_board_id).load @options.url_r

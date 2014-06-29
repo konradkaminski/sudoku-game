@@ -241,19 +241,45 @@ class SG_SudokuGenerator {
     }
     
     public function getMask() {
-        $rand = rand(0, $this->factor - 1);
+        
+        $remCols = array();
+        $remRows = array();
         $out = array();
+        for($i = 0; $i < $this->factor; $i++) {
+            $out[$i] = array();
+            for($j = 0; $j < $this->factor; $j++) {
+                $out[$i][$j] = '#';
+            }   
+        }
+        
+        
         $table = $this->getTable();
-        foreach($table as $k => $row) {
-            $element = $row[$rand] - 1;
-            foreach($row as $k2 => $number) {
-                $item = '#';
-                if($k2 == $element) {
-                    $item = $number;
+        
+        for($i = 0; $i < $this->size; $i++) {
+            for($j = 0; $j < $this->size; $j++) {
+                
+                $canRun = true;
+                do {
+                $randCol = rand(0, 2) + $i * $this->size;
+                if(!in_array($randCol, $remCols)) {
+                    $remCols[] = $randCol;
+                    $canRun = false;
                 }
-                $out[$k][$k2] = $item;    
+                } while ($canRun);
+                
+                $canRun = true;
+                do {
+                $randRow = rand(0, 2) + $j * $this->size;
+                if(!in_array($randRow, $remRows)) {
+                    $remRows[] = $randRow;
+                    $canRun = false;
+                }
+                } while ($canRun);
+                $out[$randRow][$randCol] = $table[$randRow][$randCol];
+
             }
         }
+
         return $out;
     }
     
