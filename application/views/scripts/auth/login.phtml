@@ -1,0 +1,18 @@
+<div id="login-container">
+    <div id="login-guest">
+        <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'guest')); ?>">Graj jako gość</a>
+    </div>
+    <div id="login-form">
+        <?php 
+            echo $this->form;
+        ?>
+    </div>
+    <div id="login-fb">
+        <img src="<?=$this->baseUrl('/images/facebook.png')?>" alt="Facebook"/>
+    </div>
+</div>
+<div id="register">
+    <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register')); ?>">rejestruj</a>
+</div>
+
+

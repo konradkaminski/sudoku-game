@@ -6,11 +6,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->bootstrap('view');
         $view = $this->getResource('view');
         $view->doctype('HTML5');
+        $view->addFilterPath('My/View/Filter', 'My_View_Filter_')
+            ->addFilter('Translate');
     }
     
     protected function _initAutoloader() {
         $autoloader = Zend_Loader_Autoloader::getInstance();
         $autoloader->registerNamespace('Sudoku_');
+        $autoloader->registerNamespace('My_');
         $this->_resourceLoader();
         return $autoloader;
     }    
@@ -30,7 +33,26 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
                 ),
             ),
         ));
-    }    
+    }
+    
+    protected function _initDb()
+    {
+        $resource = $this->getPluginResource('db');
+        $db = $resource->getDbAdapter();
+        $db->query("SET NAMES 'utf8'");
+        Zend_Registry::set("db", $db);
+    }
+    
+        protected function _initTranslation() {
+        $localeValue = 'pl';
+        $locale = new Zend_Locale($localeValue);
+        Zend_Registry::set('Zend_Locale', $locale);
+        $translationFile = APPLICATION_PATH . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'lang' . DIRECTORY_SEPARATOR . $localeValue . '.inc.php';
+        $translate = new Zend_Translate('array', $translationFile, $localeValue);
+        Zend_Registry::set('Zend_Translate', $translate);
+//        Zend_Form::setDefaultTranslator($translate);
+    }
+    
     
 
 }
