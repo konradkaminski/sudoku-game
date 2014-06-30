@@ -1,0 +1,8 @@
+Lista najlepszych wyników:<br />
+<ul>
+    <?php foreach($this->rows as $row): ?>
+    <li>
+        <?php echo $row['email']; ?> : <?php echo $row['time']; ?> s.
+    </li>
+    <?php endforeach; ?>
+</ul>

@@ -1,0 +1,13 @@
+<?php foreach($this->table as $rowNumber => $row): ?>
+    <div class="row">
+    <?php foreach($row as $colNumber => $item): ?>
+        <div class="col">
+        <?php if($item == '#'): ?>
+            <input type="text" class="number" name="number[<?php echo $rowNumber; ?>][<?php echo $colNumber; ?>]" maxlength="1" data-row="<?php echo $rowNumber; ?>" data-col="<?php echo $colNumber; ?>" />
+        <?php else: ?>
+            <input type="text" class="number" name="number[<?php echo $rowNumber; ?>][<?php echo $colNumber; ?>]" maxlength="1" data-row="<?php echo $rowNumber; ?>" data-col="<?php echo $colNumber; ?>" value="<?php echo $item ?>" readonly="readonly" />
+        <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+    </div>
+<?php endforeach; ?>

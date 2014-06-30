@@ -1,0 +1,15 @@
+<div id="game" 
+     data-url-r="<?php echo $this->url(array('controller' => 'game', 'action' => 'reset'), null, true); ?>"
+     data-url-c="<?php echo $this->url(array('controller' => 'game', 'action' => 'check'), null, true); ?>"
+     data-url-t="<?php echo $this->url(array('controller' => 'game', 'action' => 'timer'), null, true); ?>"
+     >
+    <div id='msg'></div>
+    <div id="game-head">
+        Czas: <span id='timer'></span>
+    </div>
+    <div id="game-body"></div>
+    <div id="game-foot">
+        <a href="#" class="reset" id="btn-reset">reset</a>
+        <a href="#" class="check" id="btn-check">check</a>
+    </div>
+</div>

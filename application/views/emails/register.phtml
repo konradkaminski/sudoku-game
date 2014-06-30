@@ -1,0 +1,12 @@
+<html>
+    <body>
+        <?php $url = $this->serverUrl() . $this->url(array(
+          'module' => 'default',
+          'action' => 'confirm',
+          'controller' => 'auth',
+          'key' => $this->key,
+          'email' => $this->email
+        )); ?>
+        link: <a href="<?php echo $url; ?>"><?php echo $url; ?></a>
+    </body>
+</html>

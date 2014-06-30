@@ -1,0 +1,15 @@
+<div class="form-box" id="login-box">
+    <div class="header">
+        {{i18n}create account{i18n}}
+    </div>
+    <form action="<?php echo $this->url(array('controller' => 'auth', 'action' => 'register', 'module' => 'default')); ?>" method="post">
+        <div class="body bg-gray">
+            <?php echo $this->form->email; ?>
+            <?php echo $this->form->password; ?>
+            <?php echo $this->form->repeat_password; ?>
+        </div>
+        <div class="footer">                                                               
+            <button type="submit" class="btn bg-olive btn-block">{{i18n}register{i18n}}</button>  
+        </div>
+    </form>
+</div>

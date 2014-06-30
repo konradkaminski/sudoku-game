@@ -1,15 +1,11 @@
 <?php
 
-class IndexController extends Zend_Controller_Action
+class IndexController extends Sudoku_Controller_Action
 {
-
-    public function init()
-    {
-        /* Initialize action controller here */
-    }
-
     public function indexAction()
     {
+        $session = new Zend_Session_Namespace('sudoku');
+        $session->isChallenge = false;
         // action body
     }
 
